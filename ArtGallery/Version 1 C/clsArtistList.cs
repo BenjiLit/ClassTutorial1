@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace Version_1_C
 {
@@ -53,7 +55,7 @@ namespace Version_1_C
         {
             try
             {
-                System.IO.FileStream lcFileStream = new System.IO.FileStream(fileName, System.IO.FileMode.Create);
+                FileStream lcFileStream = new FileStream(fileName, FileMode.Create);
                 System.Runtime.Serialization.Formatters.Soap.SoapFormatter lcFormatter =
                     new System.Runtime.Serialization.Formatters.Soap.SoapFormatter();
 
@@ -72,7 +74,7 @@ namespace Version_1_C
             
             try
             {
-                System.IO.FileStream lcFileStream = new System.IO.FileStream(fileName, System.IO.FileMode.Open);
+                FileStream lcFileStream = new FileStream(fileName, FileMode.Open);
                 System.Runtime.Serialization.Formatters.Soap.SoapFormatter lcFormatter =
                     new System.Runtime.Serialization.Formatters.Soap.SoapFormatter();
 

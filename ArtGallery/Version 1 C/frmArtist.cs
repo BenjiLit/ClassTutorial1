@@ -52,18 +52,8 @@ namespace Version_1_C
             lstWorks.DataSource = _WorksList;
             lblTotal.Text = Convert.ToString(_WorksList.GetTotalValue());
         }
-
-        //public void SetDetails(string prName, string prSpeciality, string prPhone,
-        //                       clsWorksList prWorksList, clsArtistList prArtistList)
-        //{
-        //    txtName.Text = prName;
-        //    txtSpeciality.Text = prSpeciality;
-        //    txtPhone.Text = prPhone;
-        //    _ArtistList = prArtistList;
-        //    _WorksList = prWorksList;
-        //    _SortOrder = _WorksList.SortOrder;
-        //    UpdateDisplay();
-        //}  step 8e
+              
+        //  step 8e
         public void SetDetails(clsArtist prArtist)
         {
             _Artist = prArtist;
@@ -71,14 +61,7 @@ namespace Version_1_C
             UpdateDisplay();
             ShowDialog();
         }
-        //public void GetDetails(ref string prName, ref string prSpeciality, ref string prPhone)
-        //{
-        //    prName = txtName.Text;
-        //    prSpeciality = txtSpeciality.Text;
-        //    prPhone = txtPhone.Text;
-        //    _WorksList.SortOrder = _SortOrder;
-        //} step 8f
-        
+                
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -104,7 +87,7 @@ namespace Version_1_C
         public virtual Boolean isValid()
         {
             if (txtName.Enabled && txtName.Text != "")
-                if (_ArtistList.Contains(txtName.Text))
+                if (_Artist.IsDuplicate(txtName.Text))//9b
                 {
                     MessageBox.Show("Artist with that name already exists!");
                     return false;
@@ -134,21 +117,21 @@ namespace Version_1_C
         //step 8d 
         private void updateForm()
         {
-            txtName.Text = Artist.Name;
-            txtPhone.Text = Artist.Phone;
-            txtSpeciality.Text = Artist.Speciality;
+            txtName.Text = _Artist.Name;
+            txtPhone.Text = _Artist.Phone;
+            txtSpeciality.Text = _Artist.Speciality;
             
-            lblTotal.Text = Convert.ToString(Artist.TotalValue);
-            lstWorks.Text = Convert.ToString(Artist.WorksList);
+            lblTotal.Text = _Artist.TotalValue.ToString();
+            lstWorks.Text = _Artist.WorksList.ToString();            
         }
 
         private void pushData()
         {
-            Artist.Name = txtName.Text;
-            Artist.Phone = txtPhone.Text;
-            Artist.Speciality = txtSpeciality.Text;
-            
-            Artist.TotalValue = Convert.ToDecimal(lblTotal.Text);
+            _Artist.Name = txtName.Text;
+            _Artist.Phone = txtPhone.Text;
+            _Artist.Speciality = txtSpeciality.Text;
+
+            _Artist.TotalValue = DateTime.Parse(lblTotal.Text);
         }
     }
 }

@@ -104,24 +104,14 @@ namespace Version_1_C
         public void EditDetails()
         {
             artistDialog.SetDetails(this);
-            TotalValue = WorksList.GetTotalValue(); //step 8h
-            
-            //artistDialog.SetDetails(Name, Speciality, Phone, WorksList, ArtistList);// _SortOrder,
-            //if (artistDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    artistDialog.GetDetails(ref Name, ref Speciality, ref Phone);//, ref _SortOrder
-            //    TotalValue = WorksList.GetTotalValue();
-            //}
+            TotalValue = WorksList.GetTotalValue(); //step 8h     
         }
+            
 
-        //public string GetKey()  step 8b
-        //{
-        //    return Name;
-        //}
-
-        //public decimal GetWorksValue()
-        //{
-        //    return TotalValue;
-        //}
+        public bool IsDuplicate(string prArtistName) //step 9a
+        {
+            return _ArtistList.ContainsKey(prArtistName);
+        }
+        
     }
 }
